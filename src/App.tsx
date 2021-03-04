@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import './App.css';
-import axios from 'axios';
+import axios, {AxiosError} from 'axios';
 
-function App() {
+export const App = () => {
 
-  const [message, setMessage] = useState('Hello World from react1!...');
+  const [message, setMessage] = useState('Hello from react1 client! Trying to fetch greeting node1 server...');
 
   setTimeout(() =>
     axios.get('/api/greeting')
     .then(response => {
       setMessage(response.data);
     })
-    .catch(error => {
-      console.log(error)
+    .catch((error:AxiosError) => {
+      const message = `cannot reach backend node1 server due to ${error.message}`
+      setMessage(message);
     }),1000
 
   )
@@ -24,5 +24,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
