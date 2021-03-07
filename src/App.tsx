@@ -11,7 +11,7 @@ export const App = () => {
       setMessage(response.data);
     })
     .catch((error:AxiosError) => {
-      const message = `cannot reach backend node1 server due to ${error.message}`
+      const message = `Cannot reach backend node1 server due to ${error.message}`
       setMessage(message);
     }),1000
 
