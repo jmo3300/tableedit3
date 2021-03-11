@@ -20,7 +20,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy": "aws --profile jmoaws02 s3 sync build s3://web1.m-service.fr",
+    "deploy": "aws --profile jmoaws02 s3 sync build s3://web1.m-service.fr && aws --profile jmoaws02 cloudfront create-invalidation --distribution-id E12717WQM6XIH5 --paths \"/*\"",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

@@ -42,3 +42,17 @@ Build and deploy with:
 
     npm run build
     npm run deploy
+
+
+# Invalidating Files on cloudfront
+
+Cloudfront caches S3 content and updates the cache every 24 hours. 
+For update the cache on demand the files of the distribution to be updated have to be invalidated.
+For the complete distribution:
+
+    aws --profile jmoaws02 cloudfront create-invalidation --distribution-id E12717WQM6XIH5 --paths "/*"
+
+So, the script entry for deployment to S3 AND update the Cloudfront cache in the package.json:
+
+    "deploy": "aws --profile jmoaws02 s3 sync build s3://web1.m-service.fr && aws --profile jmoaws02 cloudfront create-invalidation --distribution-id E12717WQM6XIH5 --paths \"/*\"",
+
